@@ -20,6 +20,7 @@ public class Controlator {
                return arrayNums;
     }
 
+
     public void saveDates (ArrayList arrayNums) throws IOException {
         File file = createFile();
         FileWriter writer = new FileWriter(file);
@@ -33,20 +34,20 @@ public class Controlator {
 
     }
 
+
     public File createFile () throws IOException {
         File file;
-        file = new File("C:\\Users\\USUARIO\\OneDrive\\UVG\\Clases\\Tercer Semestre\\Estructura de datos\\Codes\\HDT3-Sort\\numbers.txt");
+        file = new File("C:\\Users\\USUARIO\\OneDrive\\UVG\\Clases\\Tercer Semestre\\Estructura de datos\\Codes\\HDT3-Sorts\\numbers.txt");
         try {
             file.createNewFile();
         }catch (IOException e){}
         return file;
     }
 
-
     public ArrayList<String> readFile() {
         final ArrayList<String> expressions = new ArrayList<String>();
         try {
-            File file = new File("C:\\Users\\USUARIO\\OneDrive\\UVG\\Clases\\Tercer Semestre\\Estructura de datos\\Codes\\HDT3-Sort\\numbers.txt");
+            File file = new File("C:\\Users\\USUARIO\\OneDrive\\UVG\\Clases\\Tercer Semestre\\Estructura de datos\\Codes\\HDT3-Sorts\\numbers.txt");
             Scanner sc = new Scanner(file);
 
             while (sc.hasNextLine())
@@ -59,4 +60,17 @@ public class Controlator {
             return expressions;
         }
     }
+
+
+    public int [] arrayConverter (ArrayList<String> arrayListNumbers){
+        int[] intNumbers = new int[arrayListNumbers.size()];
+        int i = 0;
+        while (i>arrayListNumbers.size())
+        {
+            intNumbers[i] = Integer.parseInt(arrayListNumbers.get(i));
+            i++;
+        }
+        return intNumbers;
+    }
+
 }

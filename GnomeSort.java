@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class GnomeSort {
-    void gnomeSort(int[] nums)
+        int []  gnomeSort(int[] nums)
         {
             int i=1;
             int j=2;
@@ -17,6 +17,7 @@ public class GnomeSort {
                     i = (i==0) ? j++ : i;
                 }
             }
+            return nums;
         }
 }
 //Fuente del código:
