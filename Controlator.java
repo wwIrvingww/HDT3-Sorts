@@ -21,17 +21,22 @@ public class Controlator {
     }
 
 
-    public void saveDates (ArrayList arrayNums) throws IOException {
-        File file = createFile();
-        FileWriter writer = new FileWriter(file);
+    public void saveDates (ArrayList<Integer> arrayNums) throws IOException {
+
+        String path = "C:\\Users\\USUARIO\\OneDrive\\UVG\\Clases\\Tercer Semestre\\Estructura de datos\\Codes\\HDT3-Sorts\\numbers.txt";
         try {
-            for (Object number : arrayNums) {
-                writer.write(number + System.lineSeparator());
+            FileWriter fileWriter = new FileWriter(path);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+            for (int number : arrayNums) {
+                writer.write(String.valueOf(number));
+                writer.newLine();
             }
             writer.close();
-
-        }catch (IOException e){}
-
+            System.out.println("Done writing to file " + path);
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to file " + path);
+            e.printStackTrace();
+        }
     }
 
 
@@ -65,7 +70,7 @@ public class Controlator {
     public int [] arrayConverter (ArrayList<String> arrayListNumbers){
         int[] intNumbers = new int[arrayListNumbers.size()];
         int i = 0;
-        while (i>arrayListNumbers.size())
+        while (i<arrayListNumbers.size())
         {
             intNumbers[i] = Integer.parseInt(arrayListNumbers.get(i));
             i++;

@@ -1,24 +1,25 @@
 import java.util.Arrays;
 
 public class GnomeSort {
-        int []  gnomeSort(int[] nums)
+        void  gnomeSort(int arr[], int n)
         {
-            int i=1;
-            int j=2;
+            int index = 0;
 
-            while(i < nums.length) {
-                if ( nums[i-1] <= nums[i] )
-                {
-                    i = j; j++;
-                } else {
-                    int tmp = nums[i-1];
-                    nums[i-1] = nums[i];
-                    nums[i--] = tmp;
-                    i = (i==0) ? j++ : i;
+            while (index < n) {
+                if (index == 0)
+                    index++;
+                if (arr[index] >= arr[index - 1])
+                    index++;
+                else {
+                    int temp = 0;
+                    temp = arr[index];
+                    arr[index] = arr[index - 1];
+                    arr[index - 1] = temp;
+                    index--;
                 }
             }
-            return nums;
+            return;
         }
 }
 //Fuente del código:
-// https://www.w3resource.com/java-exercises/sorting/java-sorting-algorithm-exercise-13.php
+//https://www.geeksforgeeks.org/gnome-sort-a-stupid-one/
