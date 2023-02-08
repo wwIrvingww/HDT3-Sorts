@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class GnomeSort {
-        void  gnomeSort(int arr[], int n)
+        void gnomeSort(int arr[], int n)
         {
             int index = 0;
 

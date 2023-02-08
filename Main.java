@@ -1,72 +1,59 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
-    public static void xd(String[] args) throws IOException {
-        //Instanciar la clase
-        Controlator controlator = new Controlator();
-        //Generar entre 10-3000 numeros aleatorios
-        ArrayList<Integer> arrayList = controlator.intGenerator();
-        System.out.println("Arrarlist desordenada"+"\n"+arrayList);
-        //Guardar los numeros en un txt file
-        controlator.saveDates(arrayList);
-        //Leer el txt file
-        ArrayList<String> dates = controlator.readFile();
-        //Aquí se arruina
-        //Guardar los datos en un array
-        int [] arrayNumbs = new int [arrayList.size()];
-        arrayNumbs = controlator.arrayConverter(dates);
 
+   public static void main(String[] args) throws IOException {
+        //Preguntar longitud del array
+       Scanner sc = new Scanner(System.in);
+       System.out.println("Ingrese la cantidad de numeros que desea en el array");
+       int n = sc.nextInt();
+       //Instanciar el controlador
+       Controlator controlator = new Controlator();
+       controlator.readFile();
+       ArrayList<Integer> arrayList = controlator.intGenerator(n);
+       controlator.saveDates(arrayList);
+       ArrayList<String> dates = controlator.readFile();
+       int [] arrayNumbs = new int [n];
+       arrayNumbs = controlator.arrayConverter(dates);
 
-        //---------------------------------------------------//
-        //Prueba de Gnome sort//
-        /**GnomeSort gnomeSort = new GnomeSort();
-        gnomeSort.gnomeSort(arrayNumbs, arrayNumbs.length);
-        System.out.println("Arrary ordenado"+"\n"+arrayNumbs[0]+"\n"+arrayNumbs[1]+"\n"+arrayNumbs[2]);*/
-        //Sí
+       //Preguntar que metodo de ordenamieno desea usar
+       System.out.println("Ingrese el metodo de ordenamiento que desea usar\n"+"1.Gnome Sort\n"+"2.Merge Sort\n"+"3.Quick Sort\n"+"4.Radix sort\n"+"5.Bubble Sort\n");
+       int option = sc.nextInt();
 
-        //---------------------------------------------------//
-        //Prueba de Merge sort
-        MergeSort mergeSort = new MergeSort();
-        mergeSort.sort(arrayNumbs,0, (arrayNumbs.length - 1));
-        System.out.println("Arrary ordenado"+"\n"+arrayNumbs[0]+"\n"+arrayNumbs[1]+"\n"+arrayNumbs[2]+"\n"+arrayNumbs[3]+"\n"+arrayNumbs[4]);
-        //No
+       //Usar metodo de ordenamiento solicitado
+       switch (option){
+           case 1:{
+               GnomeSort gnomeSort = new GnomeSort();
+               gnomeSort.gnomeSort(arrayNumbs, arrayNumbs.length);
+               long finEjecucion = System.nanoTime();
+           }
+           case 2:{
+               MergeSort mergeSort = new MergeSort();
+               mergeSort.sort(arrayNumbs,0, (arrayNumbs.length - 1));
+               long finEjecucion = System.nanoTime();
+           }
+           case 3:{
+               QuickSort quickSort = new QuickSort();
+               quickSort.quick(arrayNumbs,0,arrayNumbs.length-1);
+               long finEjecucion = System.nanoTime();
+           }
+           case 4:{
+                RadixSort radixSort = new RadixSort();
+                radixSort.radixSort(arrayNumbs);
+               long finEjecucion = System.nanoTime();
+           }
+           case 5:{
+                BubbleSort bubbleSort = new BubbleSort();
+                bubbleSort.bubbleSort(arrayNumbs);
+               long finEjecucion = System.nanoTime();
+           }
 
-        //---------------------------------------------------//
-        //Prueba de Quick sort//
-        /**QuickSort quickSort = new QuickSort();
-        quickSort.quick(arrayNumbs,0,arrayNumbs.length-1);
-        System.out.println("Arrary ordenado"+"\n"+arrayNumbs[0]+"\n"+arrayNumbs[1]+"\n"+arrayNumbs[2]+"\n"+arrayNumbs[3]+"\n"+arrayNumbs[4]);
-        //Sí*/
-
-        //---------------------------------------------------//
-        //Prueba de Radix sort//
-        /**RadixSort radixSort = new RadixSort();
-        radixSort.radixSort(arrayNumbs);
-        System.out.println("Arrary ordenado"+"\n"+arrayNumbs[0]+"\n"+arrayNumbs[1]+"\n"+arrayNumbs[2]+"\n"+arrayNumbs[3]+"\n"+arrayNumbs[4]);*/
-        //Sí//
-
-        //---------------------------------------------------//
-        //Prueba de Bubble sort//
-        /**BubbleSort bubbleSort = new BubbleSort();
-        bubbleSort.bubbleSort(arrayNumbs);
-        System.out.println("Arrary ordenado"+"\n"+arrayNumbs[0]+"\n"+arrayNumbs[1]+"\n"+arrayNumbs[2]+"\n"+arrayNumbs[3]+"\n"+arrayNumbs[4]);
-        //Sí/*/
-    }
-
-    public static void main(String[] args) {
-        Controlator controlator = new Controlator();
-        ArrayList<String> dates = controlator.readFile();
-        int k = 0;
-        for (String xd:dates) {
-            k++;
-        }
-        int [] arrayNumbs = new int [k];
-        arrayNumbs = controlator.arrayConverter(dates);
-        MergeSort mergeSort = new MergeSort();
-        mergeSort.sort(arrayNumbs,0, (arrayNumbs.length - 1));
-        for (int uwu: arrayNumbs) {
-            System.out.println(uwu);
-        }
+       }
+       System.out.println("Array ordenado");
+       for (int i: arrayNumbs) {
+            System.out.println(i);
+       }
     }
 }
